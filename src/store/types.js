@@ -1,0 +1,4 @@
+export default {
+  GET_RECOMMEND_LIST: 'GET_RECOMMEND_LIST',
+  GET_LIKE_LIST: 'GET_LIKE_LIST',
+}
