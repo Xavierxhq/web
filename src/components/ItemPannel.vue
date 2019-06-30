@@ -18,8 +18,8 @@
 
 <style scoped>
 .wrap {
-  padding: 8px;
-  margin: 8px;
+  /*padding: 8px;
+  margin: 8px;*/
   text-align: center;
 }
 

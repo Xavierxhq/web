@@ -8,9 +8,15 @@ import actions from './actions'
 Vue.use(Vuex)
 
 const state = {
-  user: {},
-  recomend_ls: [],
+  user: {
+  	id: 1,
+  },
+  recomend_ls_1: [],
+  recomend_ls_2: [],
+  recomend_ls_3: [],
+  recomend_ls_4: [],
   like_ls: [],
+  history_ls: [],
 }
 
 export default new Vuex.Store({

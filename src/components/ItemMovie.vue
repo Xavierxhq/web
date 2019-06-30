@@ -7,6 +7,8 @@
 
 <style scoped>
 .wrap {
+  padding: 8px;
+  margin: 8px;
   border-bottom: 2px solid #2D8CE0;
 }
 
