@@ -10,6 +10,25 @@ export default {
     state.user.user = user
   },
 
+  [types.CHANGE_USER](state, user) {
+    state.user = user
+  },
+
+  [types.CHANGE_USERID](state, userid) {
+    state.userid = userid
+  },
+
+  [types.CHANGE_ALG](state, alg) {
+    state.alg = alg
+  },
+
+  [types.GET_COMMON_HISTORY_LIST](state, common_history_ls) {
+    state.common_history_ls = []
+    common_history_ls.forEach(item => {
+      state.common_history_ls.push(item)
+    })
+  },
+
   [types.GET_RECOMMEND_LIST_1](state, recomend_ls) {
     state.recomend_ls_1 = []
     recomend_ls.forEach(item => {

@@ -1,10 +1,7 @@
 <template>
   <div id="wrap">
-    <RadioGroup class="wrap-alg" v-model="alg">
-      <Radio label="推荐1"></Radio>
-      <Radio label="推荐2"></Radio>
-      <Radio label="推荐3"></Radio>
-      <Radio label="推荐4"></Radio>
+    <RadioGroup class="wrap-algtext" v-model="algtext">
+      <Radio v-for="(item, index) in algtext_ls" :key="index" :label="item"></Radio>
     </RadioGroup>
     <Page class="wrap-page" :current="cur" :total="tot" @on-change="update_page" small show-total show-elevator />
     <ItemPannel :type="type" :link="link" :title="title" :movies="get_movies" />
@@ -17,7 +14,7 @@
   padding-bottom: 16px;
 }
 
-.wrap-alg, .wrap-page {
+.wrap-algtext, .wrap-page {
   margin-top: 16px;
   margin-bottom: 16px;
 }
@@ -40,8 +37,8 @@
     },
     data() {
       return {
-        alg_ls: ["推荐1", "推荐2", "推荐3", "推荐4"],
-        alg: "推荐1",
+        algtext_ls: ["推荐1", "推荐2", "推荐3"],
+        algtext: "推荐1",
         cur: 1,
         tot: 0,
         ls1: [],
@@ -55,10 +52,10 @@
       }
     },
     created() {
-      this.init(this.alg)
+      this.init(this.algtext)
     },
     watch: {
-      alg: function(new_v, old_v) {
+      algtext: function(new_v, old_v) {
         this.cur = 1
         this.tot = 0
         this.update_recommend(new_v)
@@ -69,29 +66,33 @@
 
       get_movies() {
         let _recomend_ls = []
-        switch (this.alg) {
+        switch (this.algtext) {
           case "推荐1":
             if (this.recomend_ls_1.length < 1) {
               this.$store.commit(types.GET_RECOMMEND_LIST_1, _recomend_ls)
             }
+            this.$store.commit(types.CHANGE_ALG, 1)
             _recomend_ls = this.recomend_ls_1
             break
           case "推荐2":
             if (this.recomend_ls_2.length < 1) {
               this.$store.commit(types.GET_RECOMMEND_LIST_2, _recomend_ls)
             }
+            this.$store.commit(types.CHANGE_ALG, 2)
             _recomend_ls = this.recomend_ls_2
             break
           case "推荐3":
             if (this.recomend_ls_3.length < 1) {
               this.$store.commit(types.GET_RECOMMEND_LIST_3, _recomend_ls)
             }
+            this.$store.commit(types.CHANGE_ALG, 3)
             _recomend_ls = this.recomend_ls_3
             break
           case "推荐4":
             if (this.recomend_ls_4.length < 1) {
               this.$store.commit(types.GET_RECOMMEND_LIST_4, _recomend_ls)
             }
+            this.$store.commit(types.CHANGE_ALG, 4)
             _recomend_ls = this.recomend_ls_4
             break
           default:
@@ -103,34 +104,39 @@
       }
     },
     methods: {
-      init(alg) {
+      init(algtext) {
         let _recomend_ls = mock.mock_recommend()
         this.$store.commit(types.GET_RECOMMEND_LIST_1, _recomend_ls)
+        this.$store.commit(types.CHANGE_ALG, 1)
         this.tot = _recomend_ls.length
       },
 
-      update_recommend(alg) {
+      update_recommend(algtext) {
         let _recomend_ls = mock.mock_recommend()
-        switch (alg) {
+        switch (algtext) {
           case "推荐1":
             if (this.recomend_ls_1.length < 1) {
               this.$store.commit(types.GET_RECOMMEND_LIST_1, _recomend_ls)
             }
+            this.$store.commit(types.CHANGE_ALG, 1)
             break
           case "推荐2":
             if (this.recomend_ls_2.length < 1) {
               this.$store.commit(types.GET_RECOMMEND_LIST_2, _recomend_ls)
             }
+            this.$store.commit(types.CHANGE_ALG, 2)
             break
           case "推荐3":
             if (this.recomend_ls_3.length < 1) {
               this.$store.commit(types.GET_RECOMMEND_LIST_3, _recomend_ls)
             }
+            this.$store.commit(types.CHANGE_ALG, 3)
             break
           case "推荐4":
             if (this.recomend_ls_4.length < 1) {
               this.$store.commit(types.GET_RECOMMEND_LIST_4, _recomend_ls)
             }
+            this.$store.commit(types.CHANGE_ALG, 4)
             break
           default:
             break
@@ -141,26 +147,6 @@
 
       update_page(page) {
         this.cur = page
-        // let _all_ls = []
-        // switch (this.alg) {
-        //   case "推荐1":
-        //     _all_ls = this.recomend_ls_1
-        //     break
-        //   case "推荐2":
-        //     _all_ls = this.recomend_ls_2
-        //     break
-        //   case "推荐3":
-        //     _all_ls = this.recomend_ls_3
-        //     break
-        //   case "推荐4":
-        //     _all_ls = this.recomend_ls_4
-        //     break
-        //   default:
-        //     break
-        // }
-
-        // let cur_movies = _all_ls.slice(10 * (page - 1), 10 * page)
-        // return cur_movies
       }
     }
   }

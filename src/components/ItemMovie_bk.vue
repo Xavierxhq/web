@@ -1,6 +1,6 @@
 <template>
   <div class="wrap">
-    <p class="wrap-info">{{info}}</p>
+  	<p class="wrap-info">{{info}}</p>
     <img class="wrap-img" :src="img" />
   </div>
 </template>
@@ -28,7 +28,7 @@
   export default {
     name: 'ItemMovie',
     data() {
-      return {
+  	  return {
         img: MovieExample
       }
     },

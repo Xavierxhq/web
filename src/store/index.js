@@ -11,6 +11,9 @@ const state = {
   user: {
   	id: 1,
   },
+  userid: 0,
+  alg: 1,
+  common_history_ls: [],
   recomend_ls_1: [],
   recomend_ls_2: [],
   recomend_ls_3: [],
